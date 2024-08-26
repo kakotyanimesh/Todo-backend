@@ -1,6 +1,3 @@
-Certainly! Here is the content you requested in Markdown format, ready to be placed inside a `README.md` file:
-
-```markdown
 # Todo Backend
 
 This project is a simple Todo backend API built using Node.js, Express, and file-based storage. It allows users to manage a list of todo items with basic CRUD (Create, Read, Update, Delete) operations. The todos are stored in a JSON file (`todos.json`).
