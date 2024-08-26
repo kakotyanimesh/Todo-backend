@@ -1,0 +1,16 @@
+{
+  "name": "todo-backend",
+  "version": "1.0.0",
+  "description": "backend of a basic todo app ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Animesh kakoty",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
