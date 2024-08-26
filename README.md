@@ -49,7 +49,7 @@ The server will run on `http://localhost:3000`.
             "title": "Sample Todo",
             "completed": false
         },
-        ...
+        
     ]
     ```
 
@@ -90,7 +90,7 @@ The server will run on `http://localhost:3000`.
             "title": "Updated Todo",
             "completed": true
         },
-        ...
+        
     ]
     ```
 
@@ -122,5 +122,8 @@ The server will run on `http://localhost:3000`.
 
 This project is licensed under the MIT License.
 ```
+
+This version includes a dedicated "Assignment" section with a link to your blog post, providing context for the project as part of the 100x Dev Cohort.
+
 
 
