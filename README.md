@@ -2,6 +2,13 @@
 
 This project is a simple Todo backend API built using Node.js, Express, and file-based storage. It allows users to manage a list of todo items with basic CRUD (Create, Read, Update, Delete) operations. The todos are stored in a JSON file (`todos.json`).
 
+## Assignment
+
+This project is part of the 100x Dev Cohort assignment [link](https://harkirat.classx.co.in/new-courses) led by [Harkirat Singh](https://www.youtube.com/@harkirat1).
+
+You can read more about the development process in my [blog post](https://sunrise-boar-33f.notion.site/Todo-Backend-3554a4e3b40e419f96b83de950ec5e61).
+
+
 ## Installation
 
 ### Navigate to the project directory:
@@ -116,4 +123,4 @@ The server will run on `http://localhost:3000`.
 This project is licensed under the MIT License.
 ```
 
-This content is formatted to fit perfectly into a Markdown file and covers all aspects of your project, including installation steps, usage instructions, API endpoints, and more. Just copy this into your `README.md` file!
+
