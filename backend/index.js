@@ -1,13 +1,15 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+const cors = require('cors')
 const fs = require("fs")
 const { title } = require("process")
 
+
 const app = express()
-const port = 3000
+const port = 3002
 
 app.use(bodyParser.json())
-
+app.use(cors())
 
 fs.readFile('todos.json', (err, data) =>{
     if(err) throw err
