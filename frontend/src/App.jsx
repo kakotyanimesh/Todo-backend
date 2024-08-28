@@ -1,5 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import apiHandler from './apiHandler.js'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
+
 
 const App = () => {
 
@@ -77,7 +81,7 @@ const deleteTodo = async (e, id) => {
     try {
       e.stopPropagation()
       await apiHandler.deleteTodo(id)
-      setTodos(to)
+      setTodos(todos.filter(t => t.id !== id))
     } catch (error) {
       console.log(`error while delete`. error);
       
@@ -87,22 +91,42 @@ const deleteTodo = async (e, id) => {
 
   return (
     // component file 
-    <div className='App'>
+    
+    <div class="h-auto w-auto flex items-center  justify-center font-sans mt-20 text-red-200 grid cols-2 text-[15px]" >
       <div>
+        <h1 class='ml-24 sm:ml-60 text-xl '> 📝 TODO APP  </h1>
+        <form onSubmit={createTodo} class='flex space-x-7 sm:space-x-16 m-7 sm:m-16 '>
         <input
         id='todo-id'
         type='text'
         value={todo}
         onChange={(e) => settodo(e.target.value)}
+        placeholder='enter your todo here'
+        class="p-2  bg-[#e2e8f0] text-black rounded-xl font-medium sm:w-96"
         />
-        <button type='button' onClick={createTodo}>
-          Add Todo 
+
+        <button type='submit' class="bg-[#6366f1] p-1 sm:p-3 rounded-xl">
+          Add 
         </button>
+        </form>
       </div>
 
-      <ul>
-        // 
+
+      <div class="flex items-center justify-center text-xl ">
+         <ul>
+        {todos.map(({id, title, completed}) => (
+          <li
+            key={id}
+            onClick={(e) => updateTodo(e, id)}
+            className={completed ? "completed" : ""}
+            
+          >
+            {title} <span class='ml-3' onClick={e => deleteTodo(e, id)}><FontAwesomeIcon icon={faXmark} /></span>
+          </li>
+        ))}
       </ul>
+      </div>
+      
     </div>
   )
 }

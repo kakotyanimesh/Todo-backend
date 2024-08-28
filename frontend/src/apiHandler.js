@@ -1,4 +1,4 @@
-const axios = require('axios')
+import axios from 'axios'
 // for fetching todo list from backend 
 
 const apiUrl = 'http://localhost:3002/todos'
@@ -39,7 +39,7 @@ const deleteTodo = async (id) => {
 const updateTodo = async(id, payload) => {
 // id => todo id and payload => contains the things that is going to update => truck full of needed items 
     try {
-        const {data : newTodo} = await axios.put(`${apiUrl}$/{id}`, payload)
+        const {data : newTodo} = await axios.put(`${apiUrl}/${id}`, payload)
         // data props and rename it newTodo 
         // payload contains data like {completed : true}
         return newTodo
