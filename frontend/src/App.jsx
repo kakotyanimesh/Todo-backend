@@ -48,29 +48,41 @@ const createTodo = async e => {
     
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 
 const updateTodo = async (e, id) => {
-  
+    
+   try {
+    e.stopPropagation()
+    // prevent from bubble up in dom => stop the event after one time => propogating to parent element 
+     const payload = {
+       completed: !todos.find(t => t.id === id).completed
+       // we accesss the todo from todos array {find return one element} and checked its completed status 
+     }
+ 
+     const updateTodo = await apiHandler.updateTodo(id, payload)
+     // calling update from backend and gives its required parameter
+     setTodos(todos.map(t => t.id === id ? updateTodo : t))
+     // map returns new array where if id of original todo === id from update parameter 
+   } catch (error) {
+      console.log(`error in updating `, error);
+      
+   }
+
 }
 
 
-
+const deleteTodo = async (e, id) => {
+    try {
+      e.stopPropagation()
+      await apiHandler.deleteTodo(id)
+      setTodos(to)
+    } catch (error) {
+      console.log(`error while delete`. error);
+      
+    }
+}
 
 
   return (
