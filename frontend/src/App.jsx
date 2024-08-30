@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import apiHandler from './apiHandler.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons' 
+import { faMoon, faUser, faSun, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 
 const App = () => {
@@ -11,7 +11,22 @@ const [todos, setTodos] = useState([])
 // todos => array to store all todos
 const [todo, settodo] = useState("")
 // todo => string to store a single todo
+// const [theme, setTheme] = useState("light")
 
+
+// useEffect(() => {
+//   if(theme === "light"){
+//     document.documentElement.classList.add("dark")
+
+//   } else {
+//     document.documentElement.classList.add("dark")
+//   }
+// }, [theme])
+
+// const darkModetoggle = () => {
+//   setTheme(theme === "dark" ? "light" : "dark")
+  
+// }
 
 useEffect (() => {
   const todoFromBackend = async () => {
@@ -24,7 +39,9 @@ useEffect (() => {
 
 const createTodo = async e => {
   // (e) === e
-  e.preventDefault()
+  
+  try {
+    // e.preventDefault()
 
   if(!todo){
     // got todo parameter from input field
@@ -34,13 +51,12 @@ const createTodo = async e => {
 
   // check for unique todo 
 
-  if(todos.some((t) => t === todo )){
+  if(todos.some((t) => t.title === todo )){
     // use some method to find if entered value is existed in todos array or not !
     alert(`todo with ${todo} name already exist !`)
     return
   }
 
-  try {
     const newTodo = await apiHandler.createTodo(todo)
     // calling createTodo function and backend at the same time
     setTodos([...todos, newTodo])
@@ -92,36 +108,48 @@ const deleteTodo = async (e, id) => {
   return (
     // component file 
     
-    <div class="h-auto w-auto flex items-center  justify-center font-sans mt-20 text-red-200 grid cols-2 text-[15px]" >
+    <div className="h-auto w-auto flex items-center  justify-center font-sans mt-20 text-red-200 grid cols-2 text-[15px]" >
+      <p className=' flex justify-center items-center'>UI is ugly xd !! </p>
+      
       <div>
-        <h1 class='ml-24 sm:ml-60 text-xl '> 📝 TODO APP  </h1>
-        <form onSubmit={createTodo} class='flex space-x-7 sm:space-x-16 m-7 sm:m-16 '>
+        <div className='m-4 flex justify-between text-xl'>
+        <h1> 📝 TODO APP  </h1>
+        <div className='flex space-x-3 sm:space-x-10'>
+        <a href="https://github.com/kakotyanimesh/Todo-backend" target='_blanck'><FontAwesomeIcon icon={faGithub} /></a>
+        <a href="https://twitter.com/_animeshkakoty" target='_blanck'><FontAwesomeIcon icon={faTwitter} /></a>
+        <a href="https://www.linkedin.com/in/animesh-kakoty-3465791a6/" target='_blanck'><FontAwesomeIcon icon={faLinkedinIn} /></a>
+        </div>
+        </div>
+        
+        <form onSubmit={createTodo} className='flex space-x-7 sm:space-x-16 m-7 sm:m-16 '>
         <input
         id='todo-id'
         type='text'
         value={todo}
         onChange={(e) => settodo(e.target.value)}
         placeholder='enter your todo here'
-        class="p-2  bg-[#e2e8f0] text-black rounded-xl font-medium sm:w-96"
+        className="p-2  bg-[#e2e8f0] text-black rounded-xl font-medium sm:w-96"
         />
 
-        <button type='submit' class="bg-[#6366f1] p-1 sm:p-3 rounded-xl">
+        <button type='submit' className="bg-[#6366f1] p-1 sm:p-3 rounded-xl">
           Add 
         </button>
         </form>
       </div>
 
 
-      <div class="flex items-center justify-center text-xl ">
+      <div className="flex items-center justify-center text-xl ">
          <ul>
+          
         {todos.map(({id, title, completed}) => (
           <li
             key={id}
             onClick={(e) => updateTodo(e, id)}
             className={completed ? "completed" : ""}
+           
             
           >
-            {title} <span class='ml-3' onClick={e => deleteTodo(e, id)}><FontAwesomeIcon icon={faXmark} /></span>
+            {title} <span onClick={e => deleteTodo(e, id)}><FontAwesomeIcon icon={faXmark} /></span>
           </li>
         ))}
       </ul>
